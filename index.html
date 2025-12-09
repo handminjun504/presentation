@@ -1341,9 +1341,13 @@ const totalSlides = 13;
 function showSlide(n) {
     const slides = document.querySelectorAll('.slide');
     
-    if (n > totalSlides) currentSlide = totalSlides;
-    if (n < 1) currentSlide = 1;
-    else currentSlide = n;
+    if (n > totalSlides) {
+        currentSlide = totalSlides;
+    } else if (n < 1) {
+        currentSlide = 1;
+    } else {
+        currentSlide = n;
+    }
     
     slides.forEach(slide => slide.classList.remove('active'));
     slides[currentSlide - 1].classList.add('active');
@@ -1361,11 +1365,15 @@ function showSlide(n) {
 }
 
 function nextSlide() {
-    showSlide(currentSlide + 1);
+    if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+    }
 }
 
 function prevSlide() {
-    showSlide(currentSlide - 1);
+    if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+    }
 }
 
 // 키보드 이벤트
