@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>경리업무를잘하는청년들 - 서비스 제안서</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+body { 
+    font-family: 'Noto Sans KR', sans-serif; 
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 110%;
+}
+
+html {
+    font-size: 110%;
+}
+
+.slide {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+}
+
+.slide.active {
+    display: block;
+}
+
+.navigation {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.navigation:hover {
+    opacity: 1;
+}
+
+.nav-button {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: translateY(-2px);
+}
+
+.nav-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.slide-counter {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.slide-counter:hover {
+    opacity: 1;
+}
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background-color: #3b82f6;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    opacity: 0.5;
+}
+
+body:hover .progress-bar {
+    opacity: 1;
+}
+
+/* 슬라이드별 커스텀 스타일 */
+.check-item { transition: all 0.3s ease; }
+.check-item:hover { transform: translateX(10px); background-color: #f0f9ff; }
+.clip-arrow-right { clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%); }
+.shadow-soft { box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1); }
+.card-hover:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+.icon-box { transition: all 0.3s ease; }
+.card-hover:hover .icon-box { transform: scale(1.1); }
+.process-card { transition: all 0.3s ease; }
+.process-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+.arrow-flow { position: absolute; top: 50%; right: -20px; transform: translateY(-50%); z-index: 10; color: #cbd5e1; font-size: 1.5rem; }
+.faq-card { transition: all 0.3s ease; }
+.faq-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+.q-mark { position: absolute; font-size: 15rem; opacity: 0.03; font-weight: 900; z-index: 0; pointer-events: none; }
+.roadmap-card { transition: all 0.3s ease; }
+.roadmap-card:hover { transform: translateY(-10px); box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+.cta-button { transition: all 0.3s ease; }
+.cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 193, 7, 0.3); }
+.blur-circle { filter: blur(80px); opacity: 0.15; }
+</style>
+</head>
+<body class="bg-gray-100 m-0 p-0">
+
+<!-- 진행 바 -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- 슬라이드 카운터 -->
+<div class="slide-counter" id="slideCounter">1 / 13</div>
+
+<!-- 네비게이션 버튼 -->
+<div class="navigation">
+    <button class="nav-button" id="prevBtn" onclick="prevSlide()">
+        <i class="fas fa-chevron-left"></i> 이전
+    </button>
+    <button class="nav-button" id="nextBtn" onclick="nextSlide()">
+        다음 <i class="fas fa-chevron-right"></i>
+    </button>
+</div>
+
+<!-- 슬라이드 1 - 표지 -->
+<div class="slide active" id="slide1">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <img alt="Office Data Background" class="absolute inset-0 w-full h-full object-cover z-0" src="https://page.gensparksite.com/slides_images/92edf17d23eca7667991888aabc4db10.webp"/>
+        <div class="absolute inset-0 bg-blue-900 opacity-90 z-10"></div>
+        <div class="absolute bottom-0 right-0 w-1/3 h-full z-10 opacity-10">
+            <svg fill="none" height="100%" viewbox="0 0 400 720" width="100%" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 720L400 720L400 0L200 0L0 720Z" fill="white"></path>
+            </svg>
+        </div>
+        <div class="relative z-20 flex-1 flex flex-col justify-center items-center text-center text-white px-16">
+            <div class="mb-8">
+                <p class="text-blue-200 text-xl font-medium tracking-[0.3em] uppercase border-b border-blue-400 pb-2 inline-block">
+                    경영지원 파트너 솔루션 제안
+                </p>
+            </div>
+            <div class="mb-10">
+                <h1 class="text-6xl font-black leading-tight mb-4 tracking-tight drop-shadow-lg">
+                    사업의 성장은 <span class="text-blue-300">'매출'</span>에서 오지만,<br/>
+                    사업의 완성은 <span class="text-yellow-400">'관리'</span>에서 옵니다.
+                </h1>
+            </div>
+            <div class="text-blue-300 text-3xl mb-10 opacity-80">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="max-w-4xl bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm rounded-xl p-8 border border-white border-opacity-20 shadow-2xl">
+                <p class="text-3xl font-light text-white leading-relaxed">
+                    흔들리는 경리 업무, <br class="hidden"/>
+                    사람이 아닌 <span class="font-bold text-yellow-300">'시스템'</span>으로 해결하십시오.
+                </p>
+            </div>
+        </div>
+        <div class="relative z-20 w-full h-24 flex items-center justify-between px-16 border-t border-white border-opacity-10 bg-blue-950 bg-opacity-50 backdrop-filter backdrop-blur-md">
+            <div class="flex items-center space-x-3">
+                <div class="text-left">
+                    <p class="text-sm text-gray-300">경영지원 솔루션</p>
+                    <p class="text-xl font-bold text-white tracking-wide">경리업무를잘하는청년들</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <p class="text-blue-200 font-light text-lg">2025. 12. 09</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 2 - 도입 질문 -->
+<div class="slide" id="slide2">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-50 clip-path-polygon"></div>
+        <div class="absolute -top-20 -right-20 w-96 h-96 bg-blue-100 rounded-full opacity-50 blur-3xl"></div>
+        <div class="absolute top-8 left-12 flex items-center space-x-2 z-20 opacity-60">
+            <span class="text-blue-900 font-bold text-sm">경리업무를잘하는청년들</span>
+        </div>
+        <div class="flex flex-1 w-full h-full relative z-10">
+            <div class="w-7/12 pl-16 pr-8 flex flex-col justify-center h-full">
+                <div class="mb-2">
+                    <span class="text-blue-600 font-bold tracking-wider uppercase text-sm bg-blue-100 px-3 py-1 rounded-full">Question</span>
+                </div>
+                <h1 class="text-5xl font-black text-gray-900 leading-tight mb-6 tracking-tight">
+                    대표님, 지금 회사의<br/>
+                    <span class="text-blue-700 relative inline-block">
+                        진짜 숫자
+                        <svg class="absolute w-full h-3 -bottom-1 left-0 text-yellow-400 opacity-60" preserveaspectratio="none" viewbox="0 0 100 10">
+                            <path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path>
+                        </svg>
+                    </span>를 알고 계십니까?
+                </h1>
+                <p class="text-xl text-gray-600 font-medium mb-10 border-l-4 border-gray-300 pl-4">
+                    회사가 커질수록 대표님의 불안감도 함께 커지고 있지는 않습니까?
+                </p>
+                <div class="space-y-4 mb-10">
+                    <div class="check-item flex items-start p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md cursor-default">
+                        <div class="flex-shrink-0 mt-1">
+                            <i class="far fa-check-square text-2xl text-blue-500"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-lg text-gray-800 font-medium">통장에 돈은 들어오는데,</p>
+                            <p class="text-gray-500 text-base">어디서 어떤 이익이 나고 있는지 정확히 모르겠다.</p>
+                        </div>
+                    </div>
+                    <div class="check-item flex items-start p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md cursor-default">
+                        <div class="flex-shrink-0 mt-1">
+                            <i class="far fa-check-square text-2xl text-blue-500"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-lg text-gray-800 font-medium">직원은 늘었는데,</p>
+                            <p class="text-gray-500 text-base">누가 무슨 돈을 쓰고 있는지 관리가 안 된다.</p>
+                        </div>
+                    </div>
+                    <div class="check-item flex items-start p-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md cursor-default">
+                        <div class="flex-shrink-0 mt-1">
+                            <i class="far fa-check-square text-2xl text-blue-500"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-lg text-gray-800 font-medium">세금계산서만 제때 끊으면</p>
+                            <p class="text-gray-500 text-base">경리 업무는 끝인 줄 알았다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-blue-900 text-white p-5 rounded-r-full -ml-16 pl-16 pr-10 shadow-lg relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-20 h-full bg-blue-800 transform skew-x-12 translate-x-10 group-hover:translate-x-0 transition-transform duration-500"></div>
+                    <div class="relative z-10 flex items-center">
+                        <i class="fas fa-exclamation-circle text-3xl text-yellow-400 mr-4"></i>
+                        <div>
+                            <p class="font-bold text-lg">경리는 단순한 영수증 정리가 아닙니다.</p>
+                            <p class="font-light opacity-90 text-sm">회사의 건강 상태를 보여주는 가장 중요한 <span class="font-bold text-yellow-300">'성적표'</span>입니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-5/12 h-full relative">
+                <div class="absolute inset-0 m-8 ml-0 rounded-3xl overflow-hidden shadow-2xl">
+                    <img alt="Financial Analysis" class="w-full h-full object-cover transform scale-100 hover:scale-105 transition-transform duration-1000" src="https://page.gensparksite.com/slides_images/b4745d2c244ce0c7a94e7e52fcee95a9.webp"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900 via-transparent to-transparent opacity-60"></div>
+                    <div class="absolute bottom-8 left-8 right-8 text-white">
+                        <p class="text-sm font-light uppercase tracking-widest mb-1 opacity-80">Reality Check</p>
+                        <p class="text-2xl font-bold leading-snug">성공적인 경영은<br/>정확한 <span class="text-yellow-400">진단</span>에서 시작됩니다.</p>
+                    </div>
+                </div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 border-4 border-blue-200 rounded-full z-[-1]"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 3 - Type 1 나홀로 경영형 -->
+<div class="slide" id="slide3">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <div class="pt-12 px-16 mb-8">
+            <div class="flex items-center space-x-3 mb-4">
+                <span class="px-3 py-1 bg-gray-800 text-white text-xs font-bold rounded uppercase tracking-wider">Type 1. 나홀로 경영형</span>
+                <div class="h-px w-20 bg-gray-300"></div>
+            </div>
+            <h1 class="text-4xl font-black text-gray-900 leading-tight">
+                "영업 뛰기도 바쁜데,<br/>
+                아직도 <span class="text-red-500 relative inline-block">영수증<svg class="absolute w-full h-2 -bottom-1 left-0 text-red-200 -z-10" preserveaspectratio="none" viewbox="0 0 100 10"><path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path></svg></span> 붙이고 계십니까?"
+            </h1>
+        </div>
+        <div class="flex-1 flex px-16 pb-12 gap-8 relative">
+            <div class="flex-1 bg-gray-50 rounded-3xl p-8 border border-gray-200 relative group overflow-hidden">
+                <i class="fas fa-file-invoice-dollar absolute -bottom-10 -right-10 text-9xl text-gray-200 opacity-50 transform rotate-12 group-hover:rotate-0 transition-transform duration-500"></i>
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-xl shadow-sm">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h2 class="ml-4 text-2xl font-bold text-gray-800">문제 상황</h2>
+                    </div>
+                    <div class="space-y-6 flex-1">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                            <p class="text-sm text-gray-500 font-bold mb-1">REALITY</p>
+                            <p class="text-lg text-gray-800 font-medium leading-relaxed">
+                                사업 초기엔 직접 했지만,<br/>
+                                이제는 대표님의 <span class="bg-red-50 text-red-600 px-1 font-bold">'값비싼 시간'</span>이<br/>
+                                단순 업무에 낭비되고 있습니다.
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-3 text-gray-600 pl-2">
+                            <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                            <p class="text-base"> 중요한 계약 불발, 대표님의 일정 복잡해짐
+                        </div>
+                        <div class="flex items-start space-x-3 text-gray-600 pl-2">
+                            <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                            <p class="text-base">핵심 거래처 관리 및 영업 뒷전</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-500 text-center">대표님의 시급은 얼마입니까?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-blue-50 text-blue-600 text-2xl">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            <div class="flex-1 bg-blue-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl transform transition-transform hover:-translate-y-1 duration-300">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full opacity-20 filter blur-3xl -mr-20 -mt-20"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-purple-500 rounded-full opacity-20 filter blur-3xl -ml-10 -mb-10"></div>
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center text-yellow-300 text-xl shadow-inner border border-blue-600">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h2 class="ml-4 text-2xl font-bold text-white">솔루션</h2>
+                    </div>
+                    <div class="space-y-6 flex-1">
+                        <div class="bg-blue-800 bg-opacity-50 p-5 rounded-xl border border-blue-700 backdrop-blur-sm">
+                            <p class="text-sm text-blue-200 font-bold mb-1">KEY POINT</p>
+                            <p class="text-xl text-white font-bold leading-relaxed">
+                                대표님은 오직 <span class="text-yellow-400 border-b-2 border-yellow-400">'돈 버는 일'</span>에만<br/>
+                                집중하십시오.
+                            </p>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">단순 반복적인 경리 업무는 전문가가 전담</p>
+                            </li>
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">대표님의 시간 가치(ROI) 극대화</p>
+                            </li>
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">데이터 기반의 신속한 의사결정 지원</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-blue-700 flex justify-end">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-800 border border-blue-600 text-sm text-blue-200">
+                            <i class="fas fa-user-shield mr-2"></i>
+                            <span>원격경리 솔루션</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 4 - Type 2 인력 난항형 -->
+<div class="slide" id="slide4">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <div class="pt-12 px-16 mb-8">
+            <div class="flex items-center space-x-3 mb-4">
+                <span class="px-3 py-1 bg-gray-800 text-white text-xs font-bold rounded uppercase tracking-wider">Type 2. 인력 난항형</span>
+                <div class="h-px w-20 bg-gray-300"></div>
+            </div>
+            <h1 class="text-4xl font-black text-gray-900 leading-tight">
+                "경리 직원이 또 그만뒀나요?<br/>
+                업무 공백의 <span class="text-red-500 relative inline-block">악순환<svg class="absolute w-full h-2 -bottom-1 left-0 text-red-200 -z-10" preserveaspectratio="none" viewbox="0 0 100 10"><path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path></svg></span>."
+            </h1>
+        </div>
+        <div class="flex-1 flex px-16 pb-12 gap-8 relative">
+            <div class="flex-1 bg-gray-50 rounded-3xl p-8 border border-gray-200 relative group overflow-hidden">
+                <i class="fas fa-user-slash absolute -bottom-10 -right-10 text-9xl text-gray-200 opacity-50 transform rotate-12 group-hover:rotate-0 transition-transform duration-500"></i>
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-xl shadow-sm">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <h2 class="ml-4 text-2xl font-bold text-gray-800">문제 상황</h2>
+                    </div>
+                    <div class="space-y-6 flex-1">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                            <p class="text-sm text-gray-500 font-bold mb-1">REALITY</p>
+                            <p class="text-lg text-gray-800 font-medium leading-relaxed">
+                                믿었던 직원의 퇴사.<br/>
+                                인수인계는 부실하고 <span class="bg-red-50 text-red-600 px-1 font-bold">'업무 히스토리'</span>는<br/>
+                                끊깁니다.
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-3 text-gray-600 pl-2">
+                            <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                            <p class="text-base">새로운 사람이 올 때마다 회계 업무 마비</p>
+                        </div>
+                        <div class="flex items-start space-x-3 text-gray-600 pl-2">
+                            <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                            <p class="text-base">반복되는 채용 공고와 교육 비용 낭비</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-500 text-center">언제까지 '사람' 때문에 고민하시겠습니까?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-blue-50 text-blue-600 text-2xl">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            <div class="flex-1 bg-blue-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl transform transition-transform hover:-translate-y-1 duration-300">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full opacity-20 filter blur-3xl -mr-20 -mt-20"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-purple-500 rounded-full opacity-20 filter blur-3xl -ml-10 -mb-10"></div>
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center text-yellow-300 text-xl shadow-inner border border-blue-600">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h2 class="ml-4 text-2xl font-bold text-white">솔루션</h2>
+                    </div>
+                    <div class="space-y-6 flex-1">
+                        <div class="bg-blue-800 bg-opacity-50 p-5 rounded-xl border border-blue-700 backdrop-blur-sm">
+                            <p class="text-sm text-blue-200 font-bold mb-1">KEY POINT</p>
+                            <p class="text-xl text-white font-bold leading-relaxed">
+                                사람이 바뀌어도,<br/>
+                                회사의 <span class="text-yellow-400 border-b-2 border-yellow-400">'시스템'</span>은<br/>
+                                멈추지 않습니다.
+                            </p>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">특정 개인에게 의존하지 않는 '프로세스 기반' 처리</p>
+                            </li>
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">표준화된 매뉴얼로 업무 연속성 보장</p>
+                            </li>
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">퇴사, 휴가로 인한 업무 단절 리스크 'Zero'</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-blue-700 flex justify-end">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-800 border border-blue-600 text-sm text-blue-200">
+                            <i class="fas fa-sync-alt mr-2"></i>
+                            <span>경리업무 전문 컨설팅</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 5 - Type 3 업무 과부하형 -->
+<div class="slide" id="slide5">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <div class="pt-12 px-16 mb-8">
+            <div class="flex items-center space-x-3 mb-4">
+                <span class="px-3 py-1 bg-gray-800 text-white text-xs font-bold rounded uppercase tracking-wider">Type 3. 업무 과부하형</span>
+                <div class="h-px w-20 bg-gray-300"></div>
+            </div>
+            <h1 class="text-4xl font-black text-gray-900 leading-tight">
+                "직원 한 명 더 뽑자니 부담스럽고,<br/>
+                안 뽑자니 <span class="text-red-500 relative inline-block">일이 넘칩니다<svg class="absolute w-full h-2 -bottom-1 left-0 text-red-200 -z-10" preserveaspectratio="none" viewbox="0 0 100 10"><path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path></svg></span>."
+            </h1>
+        </div>
+        <div class="flex-1 flex px-16 pb-12 gap-8 relative">
+            <div class="flex-1 bg-gray-50 rounded-3xl p-8 border border-gray-200 relative group overflow-hidden">
+                <i class="fas fa-people-carry absolute -bottom-10 -right-10 text-9xl text-gray-200 opacity-50 transform rotate-12 group-hover:rotate-0 transition-transform duration-500"></i>
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-xl shadow-sm">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h2 class="ml-4 text-2xl font-bold text-gray-800">문제 상황</h2>
+                    </div>
+                    <div class="space-y-6 flex-1">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                            <p class="text-sm text-gray-500 font-bold mb-1">REALITY</p>
+                            <p class="text-lg text-gray-800 font-medium leading-relaxed">
+                                기존 경리 직원은 업무 과다를 호소하지만,<br/>
+                                정규직 직원을을 추가 채용하기엔<br/>
+                                <span class="bg-red-50 text-red-600 px-1 font-bold">인건비 등의 비용 부담</span>이 너무 큽니다.
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-3 text-gray-600 pl-2">
+                            <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                            <p class="text-base">기존 직원의 번아웃 및 퇴사 리스크 증가</p>
+                        </div>
+                        <div class="flex items-start space-x-3 text-gray-600 pl-2">
+                            <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                            <p class="text-base">단순 업무 증가로 인한 핵심 업무 소홀</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-500 text-center">인건비 고정비 증가, 정말 괜찮으십니까?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-blue-50 text-blue-600 text-2xl">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            <div class="flex-1 bg-blue-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl transform transition-transform hover:-translate-y-1 duration-300">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full opacity-20 filter blur-3xl -mr-20 -mt-20"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-indigo-500 rounded-full opacity-20 filter blur-3xl -ml-10 -mb-10"></div>
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center text-yellow-300 text-xl shadow-inner border border-blue-600">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h2 class="ml-4 text-2xl font-bold text-white">솔루션</h2>
+                    </div>
+                    <div class="space-y-6 flex-1">
+                        <div class="bg-blue-800 bg-opacity-50 p-5 rounded-xl border border-blue-700 backdrop-blur-sm">
+                            <p class="text-sm text-blue-200 font-bold mb-1">KEY POINT</p>
+                            <p class="text-xl text-white font-bold leading-relaxed">
+                                필요한 만큼만 쓰는<br/>
+                                <span class="text-yellow-400 border-b-2 border-yellow-400">유연한 인력 운용</span>이 정답입니다.
+                            </p>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <span class="font-bold">A</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-blue-300 font-bold">A 솔루션(기존 경리직원 지원)</p>
+                                    <p class="text-lg text-blue-100 group-hover:text-white transition-colors">단순 반복 업무 지원 → 핵심 업무 집중 유도</p>
+                                </div>
+                            </li>
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <span class="font-bold">B</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-blue-300 font-bold">B 솔루션 (경리직원 교육과 업무 지원)</p>
+                                    <p class="text-lg text-blue-100 group-hover:text-white transition-colors">주니어 직원을 리딩하는 경리부장 역할 수행</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-blue-700 flex justify-end">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-800 border border-blue-600 text-sm text-blue-200">
+                            <i class="fas fa-layer-group mr-2"></i>
+                            <span>원격경리 솔루션</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 6 - Type 4 깍두기 업무형 -->
+<div class="slide" id="slide6">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <div class="pt-12 px-16 mb-8">
+            <div class="flex items-center space-x-3 mb-4">
+                <span class="px-3 py-1 bg-gray-800 text-white text-xs font-bold rounded uppercase tracking-wider">Type 4. 깍두기 업무형</span>
+                <div class="h-px w-20 bg-gray-300"></div>
+            </div>
+            <h1 class="text-4xl font-black text-gray-900 leading-tight">
+                "왜 다른 부서 직원이<br/>
+                <span class="text-red-500 relative inline-block">경리 업무<svg class="absolute w-full h-2 -bottom-1 left-0 text-red-200 -z-10" preserveaspectratio="none" viewbox="0 0 100 10"><path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path></svg></span>까지 하고 있습니까?"
+            </h1>
+        </div>
+        <div class="flex-1 flex px-16 pb-12 gap-8 relative">
+            <div class="flex-1 bg-gray-50 rounded-3xl p-8 border border-gray-200 relative group overflow-hidden">
+                <i class="fas fa-users-cog absolute -bottom-10 -right-10 text-9xl text-gray-200 opacity-50 transform rotate-12 group-hover:rotate-0 transition-transform duration-500"></i>
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-xl shadow-sm">
+                            <i class="fas fa-random"></i>
+                        </div>
+                        <h2 class="ml-4 text-2xl font-bold text-gray-800">문제 상황</h2>
+                    </div>
+                    <div class="space-y-6 flex-1">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                            <p class="text-sm text-gray-500 font-bold mb-1">REALITY</p>
+                            <p class="text-lg text-gray-800 font-medium leading-relaxed">
+                                경리 담당자가 없어<br/>
+                                다른 직원들이 본업 외에<br/>
+                                <span class="bg-red-50 text-red-600 px-1 font-bold">'잡무처럼 나눠서'</span> 합니다.
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-3 text-gray-600 pl-2">
+                            <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                            <p class="text-base">회계 전문성 결여 및 잦은 오류 발생</p>
+                        </div>
+                        <div class="flex items-start space-x-3 text-gray-600 pl-2">
+                            <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                            <p class="text-base">직원들의 본업 몰입도 저하 및 불만 상승</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-500 text-center">핵심 인재가 영수증 정리를 하고 있지는 않습니까?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-blue-50 text-blue-600 text-2xl">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            <div class="flex-1 bg-blue-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl transform transition-transform hover:-translate-y-1 duration-300">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full opacity-20 filter blur-3xl -mr-20 -mt-20"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-purple-500 rounded-full opacity-20 filter blur-3xl -ml-10 -mb-10"></div>
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center text-yellow-300 text-xl shadow-inner border border-blue-600">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h2 class="ml-4 text-2xl font-bold text-white">솔루션</h2>
+                    </div>
+                    <div class="space-y-6 flex-1">
+                        <div class="bg-blue-800 bg-opacity-50 p-5 rounded-xl border border-blue-700 backdrop-blur-sm">
+                            <p class="text-sm text-blue-200 font-bold mb-1">KEY POINT</p>
+                            <p class="text-xl text-white font-bold leading-relaxed">
+                                모든 직원이 자신의<br/>
+                                <span class="text-yellow-400 border-b-2 border-yellow-400">'진짜 업무'</span>로 돌아갑니다.
+                            </p>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">흩어진 경리 업무를 회수하여 전문 통합 처리</p>
+                            </li>
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">구성원은 핵심 성과 업무(KPI)에 집중</p>
+                            </li>
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">직원 만족도 상승 및 조직 생산성 증대</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-blue-700 flex justify-end">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-800 border border-blue-600 text-sm text-blue-200">
+                            <i class="fas fa-chart-line mr-2"></i>
+                            <span>Productivity Boost</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 7 - Type 5 깜깜이 경영형 -->
+<div class="slide" id="slide7">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <div class="pt-12 px-16 mb-8">
+            <div class="flex items-center space-x-3 mb-4">
+                <span class="px-3 py-1 bg-gray-800 text-white text-xs font-bold rounded uppercase tracking-wider">Type 5. 깜깜이 경영형</span>
+                <div class="h-px w-20 bg-gray-300"></div>
+            </div>
+            <h1 class="text-4xl font-black text-gray-900 leading-tight">
+                "세금신고만 하면 끝?<br/>
+                우리 회사는 <span class="text-red-500 relative inline-block">얼마 벌고<svg class="absolute w-full h-2 -bottom-1 left-0 text-red-200 -z-10" preserveaspectratio="none" viewbox="0 0 100 10"><path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path></svg></span> 있습니까?"
+            </h1>
+        </div>
+        <div class="flex-1 flex px-16 pb-12 gap-8 relative">
+            <div class="flex-1 bg-gray-50 rounded-3xl p-8 border border-gray-200 relative group overflow-hidden">
+                <i class="fas fa-search-dollar absolute -bottom-10 -right-10 text-9xl text-gray-200 opacity-50 transform rotate-12 group-hover:rotate-0 transition-transform duration-500"></i>
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-xl shadow-sm">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h2 class="ml-4 text-2xl font-bold text-gray-800">문제 상황</h2>
+                    </div>
+                    <div class="space-y-6 flex-1">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                            <p class="text-sm text-gray-500 font-bold mb-1">REALITY</p>
+                            <p class="text-lg text-gray-800 font-medium leading-relaxed">
+                                세무사 사무실에서 신고는 해주지만,<br/>
+                                당장 이번 달에 <span class="bg-red-50 text-red-600 px-1 font-bold">'얼마를 남겼는지'</span><br/>
+                                대표님께 알려드리지 않습니다.
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-3 text-gray-600 pl-2">
+                            <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                            <p class="text-base">누구에게 돈을 못 받았는지(미수금) 파악 불가</p>
+                        </div>
+                        <div class="flex items-start space-x-3 text-gray-600 pl-2">
+                            <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                            <p class="text-base">현재 회사의 진짜 자금 흐름 '깜깜이' 상태</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-500 text-center">대표님의 경영은 '감'에 의존하고 계십니까?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-blue-50 text-blue-600 text-2xl">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+            <div class="flex-1 bg-blue-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl transform transition-transform hover:-translate-y-1 duration-300">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full opacity-20 filter blur-3xl -mr-20 -mt-20"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-purple-500 rounded-full opacity-20 filter blur-3xl -ml-10 -mb-10"></div>
+                <div class="relative z-10 h-full flex flex-col">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center text-yellow-300 text-xl shadow-inner border border-blue-600">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h2 class="ml-4 text-2xl font-bold text-white">솔루션</h2>
+                    </div>
+                    <div class="space-y-6 flex-1">
+                        <div class="bg-blue-800 bg-opacity-50 p-5 rounded-xl border border-blue-700 backdrop-blur-sm">
+                            <p class="text-sm text-blue-200 font-bold mb-1">KEY POINT</p>
+                            <p class="text-xl text-white font-bold leading-relaxed">
+                                단순 기장을 넘어<br/>
+                                <span class="text-yellow-400 border-b-2 border-yellow-400">'경영 판단의 근거'</span>를 드립니다.
+                            </p>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">월별 손익 보고서, 미수/미지급금 현황표 제공</p>
+                            </li>
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">'감'이 아닌 '데이터'로 의사결정 지원</p>
+                            </li>
+                            <li class="flex items-center space-x-3 group">
+                                <div class="w-6 h-6 rounded-full bg-green-400 flex items-center justify-center text-blue-900 text-xs flex-shrink-0">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <p class="text-lg text-blue-100 group-hover:text-white transition-colors">회사의 건강 상태를 보여주는 '성적표' 관리</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-blue-700 flex justify-end">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-800 border border-blue-600 text-sm text-blue-200">
+                            <i class="fas fa-database mr-2"></i>
+                            <span>보이는 보고서 제공</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 8 - 서비스 소개 -->
+<div class="slide" id="slide8">
+    <div class="w-screen h-screen relative bg-gray-50 overflow-hidden flex flex-col">
+        <div class="absolute top-0 left-0 w-full h-[320px] bg-blue-900 z-0 rounded-b-[50px] shadow-lg"></div>
+        <div class="absolute top-0 right-0 w-1/2 h-[320px] bg-blue-800 opacity-30 rounded-bl-full z-0"></div>
+        <div class="relative z-10 pt-12 px-16 text-center text-white mb-8">
+            <div class="inline-block mb-3 px-3 py-1 border border-blue-400 rounded-full bg-blue-800 bg-opacity-50 backdrop-filter backdrop-blur-sm">
+                <p class="text-blue-200 font-bold tracking-widest uppercase text-xs">Why Us</p>
+            </div>
+            <h1 class="text-4xl font-black mb-4 leading-tight drop-shadow-md text-gray-900">
+                우리는 단순 대행이 아닙니다.<br/>
+                의 <span class="text-yellow-400 relative inline-block">
+                    '온라인 재무팀'
+                    <svg class="absolute w-full h-3 -bottom-1 left-0 text-yellow-400 opacity-40" preserveaspectratio="none" viewbox="0 0 100 10"><path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path></svg>
+                </span>입니다.
+            </h1>
+            <p class="mt-4 text-lg font-medium text-gray-700">채용보다 스마트한 대안, 경리업무를잘하는청년들만의 3가지 핵심 강점</p>
+        </div>
+        <div class="relative z-20 flex-1 px-16 pb-12 flex justify-center items-center gap-8">
+            <div class="bg-white rounded-2xl shadow-lg p-8 flex-1 h-[340px] flex flex-col items-center text-center card-hover transition-all duration-300 relative overflow-hidden group border-t-4 border-blue-600">
+                <div class="icon-box w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white shadow-sm">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">전문성</h3>
+                <p class="text-gray-600 leading-relaxed text-base">
+                    다양한 업종 경험을 보유한<br/>
+                    <span class="font-bold text-blue-700 bg-blue-50 px-1">경리 전문가 그룹</span>이<br/>
+                    직접 관리합니다.
+                </p>
+                <div class="mt-auto pt-4 border-t border-gray-100 w-full flex justify-between items-center">
+                    <p class="text-xs text-gray-400 font-medium">Professional Group</p>
+                    <i class="fas fa-check-circle text-blue-300 text-sm"></i>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-8 flex-1 h-[340px] flex flex-col items-center text-center card-hover transition-all duration-300 relative overflow-hidden group border-t-4 border-teal-500">
+                <div class="icon-box w-20 h-20 bg-teal-50 rounded-full flex items-center justify-center text-teal-500 text-3xl mb-6 group-hover:bg-gray-900 group-hover:text-white shadow-sm">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">신속성</h3>
+                <p class="text-gray-600 leading-relaxed text-base">
+                    최신 협업 툴과 IT 기술을 활용한<br/>
+                    <span class="font-bold text-teal-600 bg-teal-50 px-1">빠르고 정확한 소통</span>을<br/>
+                    약속드립니다.
+                </p>
+                <div class="mt-auto pt-4 border-t border-gray-100 w-full flex justify-between items-center">
+                    <p class="text-xs text-gray-400 font-medium">Fast &amp; Smart</p>
+                    <i class="fas fa-check-circle text-teal-300 text-sm"></i>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-8 flex-1 h-[340px] flex flex-col items-center text-center card-hover transition-all duration-300 relative overflow-hidden group border-t-4 border-indigo-600">
+                <div class="icon-box w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center text-indigo-600 text-3xl mb-6 group-hover:bg-indigo-600 group-hover:text-white shadow-sm">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">체계성</h3>
+                <p class="text-gray-600 leading-relaxed text-base">
+                    주먹구구식이 아닌<br/>
+                    <span class="font-bold text-indigo-700 bg-indigo-50 px-1">매뉴얼화된 업무 프로세스</span>로<br/>
+                    실수 없는 관리를 제공합니다.
+                </p>
+                <div class="mt-auto pt-4 border-t border-gray-100 w-full flex justify-between items-center">
+                    <p class="text-xs text-gray-400 font-medium">Systematic Process</p>
+                    <i class="fas fa-check-circle text-indigo-300 text-sm"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 9 - 업무 프로세스 -->
+<div class="slide" id="slide9">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gray-50 skew-x-12 transform origin-top translate-x-20 z-0"></div>
+        <div class="relative z-10 pt-12 px-16 mb-6">
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="w-10 h-1 bg-blue-600"></div>
+                <span class="text-blue-600 font-bold tracking-widest uppercase text-sm">Process</span>
+            </div>
+            <h1 class="text-4xl font-black text-gray-900 leading-tight mb-2">
+                복잡한 과정은 저희가 합니다.<br/>
+                대표님은 <span class="text-blue-600 border-b-4 border-blue-100">결과만 확인하세요.</span>
+            </h1>
+            <p class="text-gray-500 text-lg font-light">
+                경리업무를잘하는청년들의 체계적인 4단계 원스톱 프로세스
+            </p>
+        </div>
+        <div class="relative z-10 flex-1 px-16 pb-12 flex items-center justify-between gap-4">
+            <div class="process-card flex-1 bg-white border border-gray-100 rounded-2xl p-6 relative shadow-lg h-[400px] flex flex-col group">
+                <div class="absolute -top-4 -left-4 w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-md z-20">01</div>
+                <div class="w-full h-1 bg-gray-200 mb-6 mt-2 rounded-full overflow-hidden">
+                    <div class="h-full bg-gray-400 w-1/4"></div>
+                </div>
+                <div class="text-center mb-6">
+                    <div class="w-20 h-20 bg-gray-50 rounded-full mx-auto flex items-center justify-center mb-4 group-hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">자료 전달</h3>
+                    <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">Easy &amp; Simple</p>
+                </div>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div class="bg-gray-50 p-3 rounded-lg text-center mb-4">
+                        <span class="inline-block px-2 py-0.5 bg-gray-200 text-gray-700 text-xs font-bold rounded mb-1">담당: 고객사</span>
+                        <p class="text-gray-600 text-base leading-snug break-keep">
+                            카카오톡 채널/
+                            직접 개발한 프로그램으로<br/>증빙 자료 캡처 및 업로드
+                        </p>
+                    </div>
+                    <ul class="text-sm text-gray-500 space-y-2 pl-4 list-disc">
+                        <li>영수증, 세금계산서 사진 전송</li>
+                        <li>일일 인건비 내역 공유 <il>
+                    </ul>
+                </div>
+                <div class="arrow-flow">
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </div>
+            </div>
+            <div class="process-card flex-1 bg-white border-t-4 border-blue-500 rounded-2xl p-6 relative shadow-lg h-[420px] flex flex-col group -mt-4 transform scale-105 z-20">
+                <div class="absolute -top-4 -left-4 w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-md z-20">02</div>
+                <div class="w-full h-1 bg-gray-200 mb-6 mt-2 rounded-full overflow-hidden">
+                    <div class="h-full bg-blue-500 w-2/4"></div>
+                </div>
+                <div class="text-center mb-6">
+                    <div class="w-20 h-20 bg-blue-50 rounded-full mx-auto flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
+                        <i class="fas fa-laptop-code text-4xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">데이터 가공</h3>
+                    <p class="text-xs text-blue-400 font-medium uppercase tracking-wider">Professional</p>
+                </div>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div class="bg-blue-50 p-3 rounded-lg text-center mb-4 border border-blue-100">
+                        <span class="inline-block px-2 py-0.5 bg-blue-200 text-blue-800 text-xs font-bold rounded mb-1">담당: 경청</span>
+                        <p class="text-gray-700 text-base leading-snug break-keep font-medium">
+                            전문가가 실시간으로<br/>분류, 정리, 회계 처리
+                        </p>
+                    </div>
+                    <ul class="text-sm text-gray-500 space-y-2 pl-4 list-disc">
+                        <li>계정과목 분류</li>
+                        <li>미수/미지급 정리</li>
+                        <li>증빙 누락 확인</li>
+                    </ul>
+                </div>
+                <div class="arrow-flow">
+                    <i class="fas fa-chevron-right text-blue-300"></i>
+                </div>
+            </div>
+            <div class="process-card flex-1 bg-white border border-gray-100 rounded-2xl p-6 relative shadow-lg h-[400px] flex flex-col group">
+                <div class="absolute -top-4 -left-4 w-12 h-12 bg-blue-800 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-md z-20">03</div>
+                <div class="w-full h-1 bg-gray-200 mb-6 mt-2 rounded-full overflow-hidden">
+                    <div class="h-full bg-blue-700 w-3/4"></div>
+                </div>
+                <div class="text-center mb-6">
+                    <div class="w-20 h-20 bg-indigo-50 rounded-full mx-auto flex items-center justify-center mb-4 group-hover:bg-indigo-100 transition-colors">
+                        <i class="fas fa-search-dollar text-4xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">이슈 체크</h3>
+                    <p class="text-xs text-indigo-400 font-medium uppercase tracking-wider">Double Check</p>
+                </div>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div class="bg-indigo-50 p-3 rounded-lg text-center mb-4">
+                        <span class="inline-block px-2 py-0.5 bg-indigo-200 text-indigo-800 text-xs font-bold rounded mb-1">담당: 경청↔ 대표님</span>
+                        <p class="text-gray-700 text-base leading-snug break-keep">
+                            특이사항 발생 시<br/>즉시 보고 및 논의
+                        </p>
+                    </div>
+                    <ul class="text-sm text-gray-500 space-y-2 pl-4 list-disc">
+                        <li>자금 부족 알림</li>
+                        <li>세무 리스크 사전 점검</li>
+                    </ul>
+                </div>
+                <div class="arrow-flow">
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </div>
+            </div>
+            <div class="process-card flex-1 bg-gray-800 border border-gray-700 rounded-2xl p-6 relative shadow-xl h-[400px] flex flex-col group">
+                <div class="absolute -top-4 -left-4 w-12 h-12 bg-yellow-400 rounded-xl flex items-center justify-center text-blue-900 font-black text-xl shadow-md z-20">04</div>
+                <div class="w-full h-1 bg-gray-600 mb-6 mt-2 rounded-full overflow-hidden">
+                    <div class="h-full bg-yellow-400 w-full"></div>
+                </div>
+                <div class="text-center mb-6">
+                    <div class="w-20 h-20 bg-gray-700 rounded-full mx-auto flex items-center justify-center mb-4 group-hover:bg-gray-600 transition-colors border border-gray-600">
+                        <i class="fas fa-chart-pie text-4xl text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-1">경영 보고</h3>
+                    <p class="text-xs text-yellow-400 font-medium uppercase tracking-wider">Final Report</p>
+                </div>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div class="bg-gray-700 p-3 rounded-lg text-center mb-4 border border-gray-600">
+                        <span class="inline-block px-2 py-0.5 bg-yellow-400 text-blue-900 text-xs font-bold rounded mb-1">담당: 경청 → 대표님</span>
+                        <p class="text-gray-300 text-base leading-snug break-keep">
+                            매월 보기 편한<br/>자금/손익 보고서 제공
+                        </p>
+                    </div>
+                    <ul class="text-sm text-gray-400 space-y-2 pl-4 list-disc">
+                        <li>월별 손익 현황</li>
+                        <li>미수금 리포트</li>
+                        <li>자금 흐름표</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 10 - 비용 비교표 -->
+<div class="slide" id="slide10">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <div class="relative z-10 pt-12 px-16 mb-4 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-green-100 text-green-700 text-sm font-bold tracking-wider mb-2">COST EFFICIENCY</span>
+            <h1 class="text-4xl font-black text-gray-900 leading-tight">
+                경력직 채용 대비<br/>
+                <span class="text-blue-600 border-b-4 border-blue-200">확실한 비용 절감 효과</span>를 드립니다.
+            </h1>
+        </div>
+        <div class="relative z-10 flex-1 px-24 pb-8 flex items-center justify-center gap-8">
+            <div class="flex-1 h-[420px] bg-white border border-gray-200 rounded-3xl p-8 flex flex-col relative shadow-lg group">
+                <div class="absolute top-0 left-0 w-full h-2 bg-gray-400 rounded-t-3xl"></div>
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-bold text-gray-500 mb-2">자체 채용 (경력직 1인)</h3>
+                    <div class="flex items-center justify-center space-x-2">
+                        <span class="text-sm text-gray-400 font-medium">연간 비용</span>
+                        <p class="text-3xl font-black text-gray-700">약 4,000만 원 <span class="text-xl align-top text-red-500">↑</span></p>
+                    </div>
+                </div>
+                <div class="flex-1 bg-gray-50 rounded-xl p-6 space-y-3 border border-gray-100">
+                    <div class="flex justify-between items-center text-gray-600 border-b border-gray-200 pb-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-coins w-6 text-center text-gray-400 mr-2"></i>
+                            <span class="font-medium">기본 급여</span>
+                        </div>
+                        <span class="text-sm text-gray-500">매월 고정 지출</span>
+                    </div>
+                    <div class="flex justify-between items-center text-gray-600 border-b border-gray-200 pb-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-invoice-dollar w-6 text-center text-gray-400 mr-2"></i>
+                            <span class="font-medium">4대 보험료</span>
+                        </div>
+                        <span class="text-sm text-gray-500">회사 부담분 발생</span>
+                    </div>
+                    <div class="flex justify-between items-center text-gray-600 border-b border-gray-200 pb-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-piggy-bank w-6 text-center text-gray-400 mr-2"></i>
+                            <span class="font-medium">퇴직금</span>
+                        </div>
+                        <span class="text-sm text-gray-500">1년 후 부담 급증</span>
+                    </div>
+                    <div class="flex justify-between items-center text-gray-600">
+                        <div class="flex items-center">
+                            <i class="fas fa-utensils w-6 text-center text-gray-400 mr-2"></i>
+                            <span class="font-medium">식대/복리후생</span>
+                        </div>
+                        <span class="text-sm text-gray-500">추가 비용 발생</span>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="text-sm text-red-500 font-bold bg-red-50 inline-block px-3 py-1 rounded-full">
+                        <i class="fas fa-exclamation-circle mr-1"></i> 채용/교육/관리 스트레스 (무형 비용)
+                    </p>
+                </div>
+            </div>
+            <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                <div class="w-14 h-14 bg-gray-800 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                    <span class="text-white font-black italic text-lg">VS</span>
+                </div>
+            </div>
+            <div class="flex-1 h-[450px] bg-white border-2 border-blue-500 rounded-3xl p-8 flex flex-col relative shadow-xl transform scale-105 z-10">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-md">
+                    <i class="fas fa-thumbs-up mr-1"></i> SMART CHOICE
+                </div>
+                <div class="text-center mb-6 mt-2">
+                    <h3 class="text-xl font-bold text-blue-600 mb-2">경리업무를잘하는청년들</h3>
+                    <div class="flex items-center justify-center space-x-2">
+                        <span class="text-sm text-gray-500 font-medium">월 비용</span>
+                        <p class="text-4xl font-black text-blue-800">합리적 월 수수료</p>
+                    </div>
+                    <p class="text-xs text-blue-500 font-medium mt-1">업무량에 따른 맞춤 견적</p>
+                </div>
+                <div class="flex-1 bg-blue-50 rounded-xl p-6 space-y-4 border border-blue-100 flex flex-col justify-center">
+                    <div class="flex items-center p-3 bg-white rounded-lg shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3 flex-shrink-0">
+                            <i class="fas fa-file-signature"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-lg">깔끔한 세금계산서 발행</p>
+                            <p class="text-sm text-gray-500">비용 처리 100% 가능</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-3 bg-white rounded-lg shadow-sm">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3 flex-shrink-0">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-lg">고정비 대폭 절감</p>
+                            <p class="text-sm text-gray-500">4대보험/퇴직금 부담 Zero</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="text-sm text-blue-600 font-bold bg-blue-100 inline-block px-4 py-1 rounded-full">
+                        <i class="fas fa-check-circle mr-1"></i> 업무 공백 없는 전문 시스템
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="relative z-10 w-full bg-gray-900 py-6 px-16 flex items-center justify-between mt-auto">
+            <div class="flex items-center">
+                <i class="fas fa-quote-left text-blue-500 text-2xl mr-4 opacity-50"></i>
+                <p class="text-xl text-white font-medium">
+                    고정비 부담은 <span class="text-blue-400 font-bold">낮추고</span>, 
+                    업무 퀄리티는 <span class="text-yellow-400 font-bold">높입니다.</span>
+                </p>
+            </div>
+            <div class="text-center">
+                <p class="text-gray-400 text-sm">인건비 절감 효과</p>
+                <div class="w-32 h-2 bg-gray-700 rounded-full mt-1 overflow-hidden mx-auto">
+                    <div class="h-full bg-gradient-to-r from-blue-500 to-green-400 w-3/4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 11 - FAQ -->
+<div class="slide" id="slide11">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-50 z-0 skew-x-12 transform origin-top translate-x-32"></div>
+        <div class="q-mark top-10 left-10 text-blue-900">Q</div>
+        <div class="q-mark bottom-10 right-20 text-blue-900 rotate-180">A</div>
+        <div class="relative z-10 pt-14 px-16 mb-8 text-center">
+            <span class="inline-block py-1 px-4 rounded-full bg-blue-100 text-blue-700 text-sm font-bold tracking-wider mb-3 uppercase">FAQ</span>
+            <h1 class="text-4xl font-black text-gray-900 leading-tight">
+                대표님들이 <span class="text-blue-600 relative inline-block">자주 묻는 질문<svg class="absolute w-full h-3 -bottom-1 left-0 text-blue-200 opacity-60" preserveaspectratio="none" viewbox="0 0 100 10"><path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path></svg></span>
+            </h1>
+            <p class="mt-4 text-gray-500 text-lg">궁금하신 점을 미리 확인해보세요.</p>
+        </div>
+        <div class="relative z-10 flex-1 px-20 pb-16 flex items-stretch justify-center gap-10">
+            <div class="faq-card flex-1 bg-white border border-gray-200 rounded-2xl shadow-lg flex flex-col overflow-hidden group">
+                <div class="bg-blue-600 p-8 relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-500 rounded-full opacity-50 blur-xl"></div>
+                    <div class="relative z-10 flex items-start gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center text-blue-600 font-black text-2xl shadow-md">Q</div>
+                        <div>
+                            <p class="text-blue-200 text-xs font-bold mb-1 tracking-wider">COMMUNICATION</p>
+                            <h3 class="text-2xl font-bold text-white leading-snug">
+                                사무실에 출근하지 않는데<br/>
+                                <span class="text-yellow-300">소통이 잘 될까요?</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8 flex-1 flex items-start gap-4 bg-white relative">
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-black text-2xl mt-1">A</div>
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-bold text-xl mb-3 flex items-center">
+                            네, 오히려 더 명확합니다.
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                        </p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base">
+                            카카오톡, 화상회의 등 가장 편한 방법으로 실시간 소통합니다. 구두 보고의 단점인 '휘발성' 없이,<br/>
+                            <span class="bg-yellow-100 px-1 font-bold text-gray-800">모든 요청사항은 기록으로 남아</span> 누락이 없습니다.
+                        </p>
+                        <div class="flex gap-2">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded border border-gray-200"><i class="fab fa-kakao mr-1"></i>카카오톡</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded border border-gray-200"><i class="fas fa-video mr-1"></i>Google Meet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-card flex-1 bg-white border border-gray-200 rounded-2xl shadow-lg flex flex-col overflow-hidden group">
+                <div class="bg-gray-800 p-8 relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-gray-700 rounded-full opacity-50 blur-xl"></div>
+                    <div class="relative z-10 flex items-start gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-800 font-black text-2xl shadow-md">Q</div>
+                        <div>
+                            <p class="text-gray-400 text-xs font-bold mb-1 tracking-wider">DIFFERENCE</p>
+                            <h3 class="text-2xl font-bold text-white leading-snug">
+                                세무사 사무실(기장)이랑<br/>
+                                <span class="text-yellow-300">뭐가 다른가요?</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8 flex-1 flex items-start gap-4 bg-white relative">
+                    <div class="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-black text-2xl mt-1">A</div>
+                    <div class="flex-1">
+                        <p class="text-gray-800 font-bold text-xl mb-3 flex items-center">
+                            목적 자체가 다릅니다.
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                        </p>
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 mb-3 text-base">
+                            <ul class="space-y-1">
+                                <li class="flex items-center text-gray-500"><i class="fas fa-times text-red-400 w-5 text-center mr-1"></i> 세무사: <span class="text-gray-700 ml-1">세금 신고 (외부용)</span></li>
+                                <li class="flex items-center text-gray-800 font-medium"><i class="fas fa-check text-blue-500 w-5 text-center mr-1"></i> 내부: <span class="text-blue-700 ml-1 bg-blue-50 px-1">회사 내부 관리 (경영용)</span></li>
+                            </ul>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed text-base">
+                            세무사가 챙겨주지 못하는 회사의 디테일한 <span class="font-bold text-gray-800">자금 흐름</span>과 <span class="font-bold text-gray-800">미수금</span>을 확실하게 챙겨드립니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 12 - 서비스 로드맵 -->
+<div class="slide" id="slide12">
+    <div class="w-screen h-screen relative bg-white overflow-hidden flex flex-col">
+        <div class="absolute bottom-0 left-0 w-full h-[60%] bg-blue-50 z-0 transform -skew-y-3 origin-bottom-left"></div>
+        <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-gray-50 rounded-bl-[100px] z-0"></div>
+        <div class="relative z-10 pt-12 px-16 mb-4">
+            <div class="flex items-center space-x-3 mb-2">
+                <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded uppercase tracking-wider">Growth Roadmap</span>
+                <div class="h-px w-20 bg-gray-300"></div>
+            </div>
+            <h1 class="text-4xl font-black text-gray-900 leading-tight">
+                기업 성장 단계별 <span class="text-blue-600">맞춤 솔루션</span>
+            </h1>
+            <p class="mt-2 text-gray-500 text-lg font-light">
+                회사가 커질수록 관리 포인트도 달라져야 합니다.
+            </p>
+        </div>
+        <div class="relative z-10 flex-1 px-16 pb-12 flex items-end justify-center gap-6">
+            <div class="roadmap-card w-1/3 h-[380px] bg-white border border-gray-200 rounded-2xl p-6 relative shadow-lg flex flex-col z-10 mb-0 group">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-green-100 rounded-full border-4 border-white flex items-center justify-center text-green-600 shadow-sm z-20">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="text-center mt-6 mb-4">
+                    <h3 class="text-xl font-bold text-gray-800">도입기 <span class="text-sm font-normal text-gray-500 block mt-1">Start-up</span></h3>
+                </div>
+                <div class="flex-1 bg-green-50 rounded-xl p-4 mb-4 flex flex-col justify-center">
+                    <p class="text-green-800 font-bold text-center mb-2 text-lg">추천 대상</p>
+                    <div class="flex justify-center gap-2 mb-3">
+                        <span class="px-2 py-1 bg-white text-gray-600 text-xs font-bold rounded shadow-sm border border-green-100">Type 1. 나홀로</span>
+                        <span class="px-2 py-1 bg-white text-gray-600 text-xs font-bold rounded shadow-sm border border-green-100">Type 5. 깜깜이</span>
+                    </div>
+                    <p class="text-gray-600 text-lg leading-snug text-center break-keep">
+                        기초 자금 관리 및 데이터 세팅으로<br/>대표님의 업무 부담을 덜어드립니다.
+                    </p>
+                </div>
+                <div class="border-t border-gray-100 pt-4">
+                    <ul class="text-base text-gray-500 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 영수증/증빙 기초 정리</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 월별 손익 현황 파악</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="roadmap-card w-1/3 h-[420px] bg-white border-t-4 border-blue-500 rounded-2xl p-6 relative shadow-xl flex flex-col z-10 mb-12 group transform scale-105">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-blue-100 rounded-full border-4 border-white flex items-center justify-center text-blue-600 shadow-sm z-20">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="text-center mt-8 mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900">성장기 <span class="text-sm font-normal text-blue-600 block mt-1">Scale-up</span></h3>
+                </div>
+                <div class="flex-1 bg-blue-50 rounded-xl p-5 mb-4 flex flex-col justify-center border border-blue-100">
+                    <p class="text-blue-800 font-bold text-center mb-2 text-lg">추천 대상</p>
+                    <div class="flex justify-center gap-2 mb-3">
+                        <span class="px-2 py-1 bg-white text-gray-700 text-xs font-bold rounded shadow-sm border border-blue-100">Type 3. 과부하</span>
+                        <span class="px-2 py-1 bg-white text-gray-700 text-xs font-bold rounded shadow-sm border border-blue-100">Type 4. 깍두기</span>
+                    </div>
+                    <p class="text-gray-700 text-lg leading-snug text-center break-keep font-medium">
+                        내부 관리 프로세스를 확립하고<br/>기존 인력의 업무 분장을 효율화합니다.
+                    </p>
+                </div>
+                <div class="border-t border-gray-100 pt-4">
+                    <ul class="text-base text-gray-500 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> 업무 매뉴얼/프로세스 구축</li>
+                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> 핵심 인력 본업 집중 유도</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="roadmap-card w-1/3 h-[380px] bg-white border border-gray-200 rounded-2xl p-6 relative shadow-lg flex flex-col z-10 mb-24 group">
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-indigo-100 rounded-full border-4 border-white flex items-center justify-center text-indigo-600 shadow-sm z-20">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="text-center mt-6 mb-4">
+                    <h3 class="text-xl font-bold text-gray-800">성숙기 <span class="text-sm font-normal text-gray-500 block mt-1">Stability</span></h3>
+                </div>
+                <div class="flex-1 bg-indigo-50 rounded-xl p-4 mb-4 flex flex-col justify-center">
+                    <p class="text-indigo-800 font-bold text-center mb-2 text-lg">추천 대상</p>
+                    <div class="flex justify-center mb-3">
+                        <span class="px-3 py-1 bg-white text-gray-600 text-xs font-bold rounded shadow-sm border border-indigo-100">Type 2. 인력 난항형</span>
+                    </div>
+                    <p class="text-gray-600 text-lg leading-snug text-center break-keep">
+                        경리 부서의 시스템화로<br/>리스크를 관리하고 안정적으로 운영합니다.
+                    </p>
+                </div>
+                <div class="border-t border-gray-100 pt-4">
+                    <ul class="text-base text-gray-500 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-indigo-500 mr-2"></i> 인력 공백 리스크 제거</li>
+                        <li class="flex items-center"><i class="fas fa-check text-indigo-500 mr-2"></i> 자금 사고 예방 및 감사</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 슬라이드 13 - 맺음말/CTA -->
+<div class="slide" id="slide13">
+    <div class="w-screen h-screen relative bg-gray-900 overflow-hidden flex flex-col items-center justify-center text-center">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600 rounded-full blur-circle z-0 transform translate-x-1/3 -translate-y-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-600 rounded-full blur-circle z-0 transform -translate-x-1/3 translate-y-1/3"></div>
+        <div class="relative z-10 w-full max-w-5xl px-8 flex flex-col items-center">
+            <div class="mb-8">
+                <span class="inline-block px-5 py-1.5 border border-blue-500 rounded-full bg-blue-900 bg-opacity-50 text-blue-300 text-sm font-bold tracking-widest uppercase backdrop-filter backdrop-blur-sm">
+                    Partnership Proposal
+                </span>
+            </div>
+            <h1 class="text-5xl font-black text-white leading-tight mb-10 drop-shadow-xl">
+                경영의 기본, 이제 전문가에게 맡기고<br/>
+                <span class="text-blue-400 relative inline-block pb-2">
+                    비상(飛上)하십시오.
+                    <div class="absolute bottom-0 left-0 w-full h-2 bg-blue-500 opacity-50 rounded-full"></div>
+                </span>
+            </h1>
+            <div class="bg-white bg-opacity-5 p-10 rounded-3xl border border-white border-opacity-10 backdrop-filter backdrop-blur-sm mb-12 max-w-4xl w-full shadow-2xl">
+                <p class="text-3xl text-gray-200 font-light leading-relaxed">
+                    "대표님은 <strong class="text-white font-bold border-b-2 border-yellow-500">더 큰 그림</strong>을 그리십시오.<br/>
+                    저희가 그 그림을 완성할 수 있도록<br/>
+                    <strong class="text-blue-300 font-bold">탄탄한 숫자</strong>로 뒷받침하겠습니다."
+                </p>
+            </div>
+            <div class="flex flex-col items-center gap-5 mb-14">
+                <button onclick="openContactForm()" class="cta-button bg-yellow-500 hover:bg-yellow-400 text-gray-900 text-xl font-black py-4 px-12 rounded-full shadow-lg flex items-center gap-4">
+                    <span>지금 상담 요청하기</span>
+                    <div class="bg-gray-900 text-yellow-500 rounded-full w-6 h-6 flex items-center justify-center">
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </div>
+                </button>
+                <p class="text-blue-200 text-sm font-medium bg-blue-900 bg-opacity-40 px-4 py-2 rounded-lg">
+                    <i class="fas fa-gift mr-2 text-yellow-400"></i>
+                    저희와 함께하시면 <span class="text-white font-bold border-b border-white border-opacity-40">관련 컨설팅</span> 및 <span class="text-white font-bold border-b border-white border-opacity-40">경리나라 프로그램 2개월 무료 체험권을</span> 제공해 드립니다.
+                </p>
+            </div>
+            <div class="flex items-center gap-10 text-gray-400 border-t border-gray-700 pt-8 w-full justify-center -mt-12">
+                <div class="flex items-center gap-3 group cursor-pointer">
+                    <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-phone-alt text-lg"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs uppercase tracking-wider text-gray-500 group-hover:text-blue-300 transition-colors">Call Us</p>
+                        <p class="text-white font-bold text-xl">1566-2687</p>
+                    </div>
+                </div>
+                <div class="w-px h-10 bg-gray-700"></div>
+                <div class="flex items-center gap-3 group cursor-pointer">
+                    <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-envelope text-lg"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs uppercase tracking-wider text-gray-500 group-hover:text-blue-300 transition-colors">Email Us</p>
+                        <p class="text-white font-bold text-xl">wapeople000@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-5 w-full text-center">
+            <p class="text-gray-400 text-xs font-bold tracking-[0.2em] opacity-30">경리업무를잘하는청년들 | Business Proposal</p>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentSlide = 1;
+const totalSlides = 13;
+
+function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
+    
+    if (n > totalSlides) currentSlide = totalSlides;
+    if (n < 1) currentSlide = 1;
+    else currentSlide = n;
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[currentSlide - 1].classList.add('active');
+    
+    // 카운터 업데이트
+    document.getElementById('slideCounter').textContent = currentSlide + ' / ' + totalSlides;
+    
+    // 진행 바 업데이트
+    const progress = (currentSlide / totalSlides) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+    
+    // 버튼 상태 업데이트
+    document.getElementById('prevBtn').disabled = currentSlide === 1;
+    document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+}
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
+
+// 키보드 이벤트
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowRight' || event.key === ' ' || event.key === 'PageDown') {
+        event.preventDefault();
+        nextSlide();
+    } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+        event.preventDefault();
+        prevSlide();
+    } else if (event.key === 'Home') {
+        event.preventDefault();
+        showSlide(1);
+    } else if (event.key === 'End') {
+        event.preventDefault();
+        showSlide(totalSlides);
+    }
+});
+
+// 초기화
+showSlide(1);
+
+// 상담 신청 폼 열기
+function openContactForm() {
+    window.open(
+        'https://docs.google.com/forms/d/e/1FAIpQLSdPGZT_oDGuguLqIC9VobE-ZQbGTVJgCSbFGUhdHw6ml9ZrBw/viewform',
+        'contactForm',
+        'width=800,height=900,left=200,top=100,resizable=yes,scrollbars=yes'
+    );
+}
+</script>
+
+</body>
+</html>
