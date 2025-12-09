@@ -119,6 +119,45 @@ body:hover .progress-bar {
 .cta-button { transition: all 0.3s ease; }
 .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 193, 7, 0.3); }
 .blur-circle { filter: blur(80px); opacity: 0.15; }
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+    html {
+        font-size: 50%; /* 모바일에서 전체 글자 크기 조정 */
+    }
+    
+    body {
+        font-size: 100%;
+    }
+    
+    .slide-counter {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+    
+    .nav-button {
+        font-size: 12px;
+        padding: 10px 15px;
+    }
+    
+    /* 네비게이션 버튼을 항상 표시 (모바일에서는 호버가 어려움) */
+    .navigation {
+        opacity: 0.7;
+    }
+    
+    .slide-counter {
+        opacity: 0.7;
+    }
+}
+
+/* 터치 스와이프를 위한 사용자 선택 방지 */
+.slide {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: pan-y;
+}
 </style>
 </head>
 <body class="bg-gray-100 m-0 p-0">
@@ -1396,13 +1435,52 @@ document.addEventListener('keydown', function(event) {
 // 초기화
 showSlide(1);
 
+// 터치 이벤트 (모바일 스와이프)
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', function(event) {
+    touchStartX = event.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', function(event) {
+    touchEndX = event.changedTouches[0].screenX;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    const swipeThreshold = 50; // 최소 스와이프 거리 (픽셀)
+    
+    if (touchEndX < touchStartX - swipeThreshold) {
+        // 왼쪽으로 스와이프 = 다음 슬라이드
+        nextSlide();
+    }
+    
+    if (touchEndX > touchStartX + swipeThreshold) {
+        // 오른쪽으로 스와이프 = 이전 슬라이드
+        prevSlide();
+    }
+}
+
 // 상담 신청 폼 열기
 function openContactForm() {
-    window.open(
-        'https://docs.google.com/forms/d/e/1FAIpQLSdPGZT_oDGuguLqIC9VobE-ZQbGTVJgCSbFGUhdHw6ml9ZrBw/viewform',
-        'contactForm',
-        'width=800,height=900,left=200,top=100,resizable=yes,scrollbars=yes'
-    );
+    // 모바일 환경 감지
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // 모바일: 현재 창에서 열기
+        window.open(
+            'https://docs.google.com/forms/d/e/1FAIpQLSdPGZT_oDGuguLqIC9VobE-ZQbGTVJgCSbFGUhdHw6ml9ZrBw/viewform',
+            '_blank'
+        );
+    } else {
+        // PC: 팝업창으로 열기
+        window.open(
+            'https://docs.google.com/forms/d/e/1FAIpQLSdPGZT_oDGuguLqIC9VobE-ZQbGTVJgCSbFGUhdHw6ml9ZrBw/viewform',
+            'contactForm',
+            'width=800,height=900,left=200,top=100,resizable=yes,scrollbars=yes'
+        );
+    }
 }
 </script>
 
